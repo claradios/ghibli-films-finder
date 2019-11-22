@@ -115,6 +115,7 @@ function showFilmAnswer(result) {
     noMatchSound.play();
   }
 }
+//
 
 export function createFilteredInfo(array) {
   let acc = '';
