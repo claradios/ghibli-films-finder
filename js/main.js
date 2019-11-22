@@ -1,14 +1,11 @@
 'use strict';
-
+import {callApi} from './service.js';
 // html tags
 const filter = document.querySelector('.search__field');
 const list = document.querySelector('.display__list');
 const infoContainer = document.querySelector('.display__additional-info');
 const searchSection = document.querySelector('.app__search');
 const sticky = searchSection.offsetTop;
-
-// api endpoint
-const ENDPOINT = 'https://ghibliapi.herokuapp.com/films';
 
 // sounds
 const flipSound = new Audio('sounds/cardflip.mp3');
@@ -74,7 +71,8 @@ function addListeners() {
   }
 }
 
-function createNodeFilm(id, title, description, director, rt_score) {
+function createNodeFilm(film) {
+  const { id, title, description, director, rt_score } = film;
   const item = `<li class = "film__item" id = ${id}>
                     <section class="card__header">
                         <h2 class="film__title">${title}</h2>
@@ -94,9 +92,8 @@ function createNodeFilm(id, title, description, director, rt_score) {
 function filterAndMap(array, acc) {
   array
     .filter(film => (film.title || film.description).toLowerCase().includes(searchText.toLowerCase()))
-    .map(film => {
-      const { id, title, description, director, rt_score } = film;
-      const filmCard = createNodeFilm(id, title, description, director, rt_score);
+    .map(film => {   
+      const filmCard = createNodeFilm(film);
       acc += filmCard;
     });
 
@@ -130,35 +127,35 @@ export function createFilteredInfo(array) {
   addListeners();
 }
 
-// function callFilms() {
-//     fetch(ENDPOINT)
-//         .then(res => res.json())
-//         .then(data => {
-//             filmArr = data;
-//             infoContainer.innerHTML = '';
-//             return createFilteredInfo(filmArr);
-//         })
-//         .catch(err => {
-//             console.log(err);
-//             return printErrorMsg(apiErrMsg);
-//         });
-// }
+function callFilms() {
+    
+    callApi()    
+        .then(data => {
+            filmArr = data;
+            infoContainer.innerHTML = '';
+            return createFilteredInfo(filmArr);
+        })
+        .catch(err => {
+            console.log(err);
+            return printErrorMsg(apiErrMsg);
+        });
+}
 
-async function callFilms() {
-  try {
-    let res = await fetch(ENDPOINT);
-    let data = await res.json();
+// async function callFilms() {
+//   try {
+//     let res = await fetch(ENDPOINT);
+//     let data = await res.json();
 
-    filmArr = data;
-    infoContainer.innerHTML = '';
+//     filmArr = data;
+//     infoContainer.innerHTML = '';
 
-    return createFilteredInfo(filmArr);
+//     return createFilteredInfo(filmArr);
 
-  } catch (err) {
-    console.log(err);
-    return printErrorMsg(apiErrMsg);
-  }
-};
+//   } catch (err) {
+//     console.log(err);
+//     return printErrorMsg(apiErrMsg);
+//   }
+// };
 
 function searchFilm(event) {
   const inputValue = event.currentTarget.value;
@@ -192,7 +189,7 @@ function loader() {
                 </section>`;
   infoContainer.innerHTML = loader;
 }
-
+console.log('primera llamada');
 loader();
 setTimeout(callFilms, 2000);
 
