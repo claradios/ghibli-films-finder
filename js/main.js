@@ -3,7 +3,6 @@
 // html tags
 const filter = document.querySelector('.search__field');
 const list = document.querySelector('.display__list');
-const displaySection = document.querySelector('.app__display');
 const infoContainer = document.querySelector('.display__additional-info');
 const searchSection = document.querySelector('.app__search');
 const sticky = searchSection.offsetTop;
@@ -120,7 +119,7 @@ function showFilmAnswer(result) {
   }
 }
 
-function createFilteredInfo(array) {
+export function createFilteredInfo(array) {
   let acc = '';
   const result = filterAndMap(array, acc);
 
