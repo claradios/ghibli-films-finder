@@ -56,11 +56,14 @@ function showFilmAnswer(result) {
 
 
 export function createFilteredInfo(array) {
+  const cardSelector = '.film__item';
+  const btnSelector = '.film__button';
   const result = filterAndMap(array);
+
   cleanContainers(infoContainer, list);
   showFilmAnswer(result);
-  addClickListener('.film__item', showDescription);
-  addClickListener('.film__button', showDescription);
+  addClickListener(cardSelector, showDescription);
+  addClickListener(btnSelector, showDescription);
 }
 
 function callFilms() {
