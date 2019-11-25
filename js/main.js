@@ -2,7 +2,7 @@
 
 import { callApi } from './service.js';
 import { createNodeFilm, addClickListener, printErrorMsg } from './print.js';
-import { flipCard, cleanContainers, fixSearchSection, resetFlippedCard } from './interaction.js';
+import { showDescription, cleanContainers, fixSearchSection, resetFlippedCard } from './interaction.js';
 import { loader } from './loader.js';
 
 // html tags
@@ -12,7 +12,6 @@ const infoContainer = document.querySelector('.display__additional-info');
 const searchSection = document.querySelector('.app__search');
 
 // sounds
-const flipSound = new Audio('sounds/cardflip.mp3');
 const noMatchSound = new Audio('sounds/nomatch.mp3');
 
 // messages
@@ -24,13 +23,7 @@ let filmArr = [];
 let searchText = '';
 
 
-function showDescription(event) {
-  const film = event.currentTarget;
-  const id = film.id;
-  resetFlippedCard(id,'.film__item');  
-  flipCard(film, 'toggle');
-  flipSound.play();
-}
+
 
 function filterAndMap(array) {
   let acc = '';

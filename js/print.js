@@ -2,7 +2,8 @@
 
 function createNodeFilm(film) {
     const { id, title, description, director, rt_score } = film;
-    const item = `<li class = "film__item" id = ${id}>
+    const item = 
+                `<li class = "film__item" id = ${id}>
                       <section class="card__header">
                           <h2 class="film__title">${title}</h2>
                           <button class="film__button">+</button>

@@ -1,4 +1,3 @@
-// const { sum, mul, sub, div } = require('./../js/math.js');
  import {sum, mul, sub, div} from '../js/math.js';
 
 
