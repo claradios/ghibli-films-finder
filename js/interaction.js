@@ -4,6 +4,10 @@ const REMOVE = 'remove';
 // sounds
 const flipSound = new Audio('sounds/cardflip.mp3');
 
+function filterTitle(array, text) {
+    return array.filter(film => (film.title || film.description).toLowerCase().includes(text.toLowerCase())); 
+  }
+
 function pickCard(film) {
     const description = film.querySelector('.film__description');
     const info = film.querySelector('.film__info');
@@ -61,4 +65,4 @@ function fixSearchSection(section) {
     }
 }
 
-export { flipCard,showDescription, resetFlippedCard, cleanContainers, fixSearchSection };
+export {filterTitle, flipCard, showDescription, resetFlippedCard, cleanContainers, fixSearchSection };

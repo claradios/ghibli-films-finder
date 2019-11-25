@@ -2,7 +2,7 @@
 
 import { callApi } from './service.js';
 import { createNodeFilm, addClickListener, printErrorMsg } from './print.js';
-import { showDescription, cleanContainers, fixSearchSection, resetFlippedCard } from './interaction.js';
+import {filterTitle, showDescription, cleanContainers, fixSearchSection} from './interaction.js';
 import { loader } from './loader.js';
 
 // html tags
@@ -23,21 +23,6 @@ let filmArr = [];
 let searchText = '';
 
 
-
-
-function filterAndMap(array) {
-  let acc = '';
-  array
-    .filter(film => (film.title || film.description).toLowerCase().includes(searchText.toLowerCase()))
-    .map(film => {
-      const filmCard = createNodeFilm(film);
-      acc += filmCard;
-    });
-
-  return acc;
-}
-
-
 function showFilmAnswer(result) {
   if (result !== '') {
     list.innerHTML = result;
@@ -47,14 +32,26 @@ function showFilmAnswer(result) {
   }
 }
 
+function mapCards(array) {
+  let acc = '';
+  array.map(film => {
+      const filmCard = createNodeFilm(film);
+      acc += filmCard;
+    });
 
-export function createFilteredInfo(array) {
+  return acc;
+}
+
+
+
+function createFilteredInfo(array) {
   const cardSelector = '.film__item';
   const btnSelector = '.film__button';
-  const result = filterAndMap(array);
+  const filterResult = filterTitle(array,searchText);
+  const mapResult = mapCards(filterResult);
 
   cleanContainers(infoContainer, list);
-  showFilmAnswer(result);
+  showFilmAnswer(mapResult);
   addClickListener(cardSelector, showDescription);
   addClickListener(btnSelector, showDescription);
 }
@@ -103,3 +100,4 @@ window.onscroll = () => fixSearchSection(searchSection);
 filter.addEventListener('keyup', searchFilm);
 
 
+export {filterTitle};

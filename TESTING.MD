@@ -38,3 +38,13 @@ y para hacerlo funcionar:
 `npm run test`
 
 
+para poder testear el fetch tienes quqe instalarte además: 
+https://www.npmjs.com/package/jest-fetch-mock#simple-mock-and-assert
+`$ npm install --save-dev jest-fetch-mock` 
+
+
+y para poder testear elementos del DOM tienes que instalarte además:
+`npm i jsdom`
+
+para hacer correr el debugger
+`npm run test:debug`

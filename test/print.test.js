@@ -1,35 +1,34 @@
-import { createNodeFilm } from '../js/print.js';
+import { createNodeFilm, printErrorMsg } from '../js/print.js';
+import { mockedMsg, filmObjInput, filmCardOutput } from './fixtures/filmElementsFixture.js';
+// const jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const dom = new JSDOM(`<!DOCTYPE html><section>Hello world</section>`);
+// const selector = dom.window.document.querySelector("section");
+// const dom = document.body.innerHTML = '<section>TEXT</section>'
 
 
-
-describe('methods for creating HTML Elements', () => {
-    test('the result is defined', () => {
+describe('methods for creating HTML Film Card Elements', () => {
+    test('in createNodeFilm the result is defined', () => {
         const film = {};
         expect(createNodeFilm(film)).toBeDefined()
     });
-    test('the result is defined', () => {
-        const input = {
-            id:'aaaa2222',
-            title:'titulo',
-            description:'descripcion',
-            director:'director',
-            rt_score:'88'
-            };
-            const item = 
-                `<li class = "film__item" id = ${input.id}>
-                      <section class="card__header">
-                          <h2 class="film__title">${input.title}</h2>
-                          <button class="film__button">+</button>
-                      </section>       
-                      <section class = "card__main">             
-                          <p class = "film__description hidden" data-id=${input.id}>${input.description}</p>
-                          <div class = "film__info" data-id=${input.id}>
-                              <p class = "film__author"><span class = "film-icon"><i class="fas fa-video"></i></span> ${input.director}</p>
-                          <div><span class = "film-icon"><i class="fas fa-star"></i></span> ${input.rt_score}</div>
-                      </div>    
-                      </section>                        
-                  </li>`;
-        expect(createNodeFilm(input)).toEqual(item)
+    test('in createNodeFilm returns string', () => {
+        expect(createNodeFilm(filmObjInput)).toEqual(filmCardOutput)
     });
 })
+
+describe('method for creating messages into html tag', () => {
+
+    test('in printMsg the result is defined with nice paht', () => {
+        document.body.innerHTML = '<section class="testing"></section>'
+        
+        const selector = document.querySelector('.testing')
+        const output = `<p class="info__no-result">${mockedMsg}</p>`;
+        printErrorMsg(mockedMsg, selector);
+
+        expect(selector.innerHTML).toBe(output); 
+    });
+
+})
+
 

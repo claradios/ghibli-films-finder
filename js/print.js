@@ -2,8 +2,8 @@
 
 function createNodeFilm(film) {
     const { id, title, description, director, rt_score } = film;
-    const item = 
-                `<li class = "film__item" id = ${id}>
+    const item =
+        `<li class = "film__item" id = ${id}>
                       <section class="card__header">
                           <h2 class="film__title">${title}</h2>
                           <button class="film__button">+</button>
@@ -20,17 +20,27 @@ function createNodeFilm(film) {
 }
 
 function addClickListener(selector, func) {
-    const selection = document.querySelectorAll(`${selector}`);
-    for (const item of selection) {
-        item.addEventListener('click', func);
+    if (selector && func) {
+        const selection = document.querySelectorAll(`${selector}`);
+        for (const item of selection) {
+            item.addEventListener('click', func);
+        }
     }
 }
 
-function printErrorMsg(text, container) {
-    const newElement = document.createElement('p');
-    newElement.classList = 'info__no-result';
-    newElement.innerText = text;
-    container.appendChild(newElement);
+// function printErrorMsg(text = '', container) {
+//     if (container) {
+//         const newElement = document.createElement('p');
+//         newElement.classList = 'info__no-result';
+//         newElement.innerText = text;
+//         container.appendChild(newElement);
+//     }
+// }
+
+function printErrorMsg(text = '', container) {
+    if (container) {
+        container.innerHTML = `<p class="info__no-result">${text}</p>`
+    }
 }
 
 export { createNodeFilm, printErrorMsg, addClickListener };
