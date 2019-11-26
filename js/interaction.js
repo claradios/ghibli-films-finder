@@ -1,4 +1,6 @@
 'use strict';
+
+// orders
 const TOGGLE = 'toggle';
 const REMOVE = 'remove';
 // sounds
@@ -65,4 +67,6 @@ function fixSearchSection(section) {
     }
 }
 
-export {filterTitle, flipCard, showDescription, resetFlippedCard, cleanContainers, fixSearchSection };
+
+
+export { filterTitle, flipCard, showDescription, resetFlippedCard, cleanContainers, fixSearchSection };

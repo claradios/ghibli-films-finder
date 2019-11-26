@@ -1,9 +1,4 @@
 import { loader } from '../js/loader.js';
-// const jsdom = require("jsdom");
-// const { JSDOM } = jsdom;
-// const dom = new JSDOM(`<!DOCTYPE html><p>Hello world</p>`);
-// const selector = dom.window.document.querySelector("p");
-
 
 const output = `
                   <section class="section__loader">
@@ -29,5 +24,7 @@ describe('loader component function', () => {
         expect(selector.innerHTML).toBe(output);        
     });
 });
+
+
 
 

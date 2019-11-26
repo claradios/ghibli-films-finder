@@ -2,8 +2,9 @@
 
 import { callApi } from './service.js';
 import { createNodeFilm, addClickListener, printErrorMsg } from './print.js';
-import {filterTitle, showDescription, cleanContainers, fixSearchSection} from './interaction.js';
+import { filterTitle, showDescription, cleanContainers, fixSearchSection} from './interaction.js';
 import { loader } from './loader.js';
+import {waitForCalling} from './setTimeOut.js'
 
 // html tags
 const filter = document.querySelector('.search__field');
@@ -91,13 +92,13 @@ function searchFilm(event) {
   createFilteredInfo(filmArr);
 }
 
-loader(infoContainer);
 
-setTimeout(callFilms, 2000);
+loader(infoContainer);
+waitForCalling(callFilms);
 
 window.onscroll = () => fixSearchSection(searchSection);
 
 filter.addEventListener('keyup', searchFilm);
 
 
-export {filterTitle};
+export {filterTitle, callFilms};

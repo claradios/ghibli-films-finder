@@ -22,4 +22,7 @@ const filmCardOutput =
                       </section>                        
                   </li>`;
 
+
+
+
 export {mockedMsg, filmObjInput, filmCardOutput};
