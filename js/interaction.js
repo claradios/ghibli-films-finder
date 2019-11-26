@@ -7,22 +7,24 @@ const REMOVE = 'remove';
 const flipSound = new Audio('sounds/cardflip.mp3');
 
 function filterTitle(array, text) {
-    return array.filter(film => (film.title || film.description).toLowerCase().includes(text.toLowerCase())); 
-  }
+    return array.filter(film => (film.title || film.description).toLowerCase().includes(text.toLowerCase()));
+}
 
 function pickCard(film) {
-    const description = film.querySelector('.film__description');
-    const info = film.querySelector('.film__info');
-    const title = film.querySelector('.film__title');
-    const btn = film.querySelector('.film__button');
-    return {description,info,title,btn};
+    if (film) {
+        const description = film.querySelector('.film__description');
+        const info = film.querySelector('.film__info');
+        const title = film.querySelector('.film__title');
+        const btn = film.querySelector('.film__button');
+        return { description, info, title, btn };
+    }    
 }
 
 function flipCard(film, order) {
 
     const newFilm = pickCard(film);
-    const {description, info, btn, title} = newFilm;
-    
+    const { description, info, btn, title } = newFilm;
+
     if (order === TOGGLE) {
         description.classList.toggle('hidden');
         info.classList.toggle('hidden');
@@ -35,16 +37,16 @@ function flipCard(film, order) {
         btn.classList.remove('rotate');
         film.classList.remove('highlight');
         title.classList.remove('highlight-title');
-    } 
+    }
 }
 
 function showDescription(event) {
     const film = event.currentTarget;
     const id = film.id;
-    resetFlippedCard(id,'.film__item');  
+    resetFlippedCard(id, '.film__item');
     flipCard(film, TOGGLE);
     flipSound.play();
-  }
+}
 
 function resetFlippedCard(id, selector) {
     const newFilmObj = document.querySelectorAll(selector);

@@ -1,6 +1,6 @@
 import { apiFilms } from './fixtures/filmApiFixture.js';
-import { mockedFilm } from './fixtures/filmElementsFixture.js';
-import { filterTitle, cleanContainers, pickCard } from '../js/interaction.js';
+import { mockedFilm, mockedList } from './fixtures/filmElementsFixture.js';
+import {flipCard, filterTitle, cleanContainers, pickCard, resetFlippedCard } from '../js/interaction.js';
 
 
 describe("Filter function", () => {
@@ -39,19 +39,74 @@ describe("Function that reset any containers interior to empty", () => {
 });
 
 
-describe("Function that takes elements from dom ", () => {
+describe("Function that takes elements from dom element and return and object", () => {
 
     test("it should return elements that contain specific clases", () => {
 
         document.body.innerHTML =  `${mockedFilm}`;
         const film = document.querySelector('li');
-        const result =pickCard(film);
+        const result =pickCard(film);     
         expect(result.description.classList.contains('film__description')).toBe(true);
         expect(result.info.classList.contains('film__info')).toBe(true);
         expect(result.btn.classList.contains('film__button')).toBe(true);
         expect(result.title.classList.contains('film__title')).toBe(true);
+        expect(result).toBeTruthy();   
+        expect(result).toHaveProperty('description');  
+        expect(result).toHaveProperty('info');   
+        expect(result).toHaveProperty('btn');
+        expect(result).toHaveProperty('title');       
     });
 
 });
 
+describe("Function that TOGGLE or REMOVE classes from card elements", () => {
 
+    const TOGGLE = 'toggle';
+    const REMOVE = 'remove';
+
+    test("it should toggle classes when parameter is TOGGLE", () => { 
+        document.body.innerHTML =  `${mockedFilm}`;
+        const film = document.querySelector('li');      
+        
+        flipCard(film, TOGGLE);        
+          
+        expect(pickCard(film).description.classList.contains('hidden')).toBeFalsy();
+        expect(pickCard(film).description.classList.contains('film__description')).toBe(true);  
+        expect(pickCard(film).info.classList.contains('hidden')).toBeTruthy();  
+        expect(pickCard(film).btn.classList.contains('rotate')).toBeTruthy(); 
+        expect(pickCard(film).title.classList.contains('highlight-title')).toBeTruthy();
+         
+    });
+
+    test("it should toggle classes when parameter is REMOVE", () => { 
+        document.body.innerHTML =  `${mockedFilm}`;
+        const film = document.querySelector('li');      
+        
+        flipCard(film, TOGGLE);
+        flipCard(film, REMOVE);
+
+        expect(pickCard(film).description.classList.contains('hidden')).toBeTruthy();
+        expect(pickCard(film).description.classList.contains('film__description')).toBe(true);  
+        expect(pickCard(film).info.classList.contains('hidden')).toBeFalsy();  
+        expect(pickCard(film).btn.classList.contains('rotate')).toBeFalsy(); 
+        expect(pickCard(film).title.classList.contains('highlight-title')).toBeFalsy();
+         
+    }); 
+
+});
+
+describe("Function filters an iterable object of cards from dom and maps it to flip it", () => {
+
+    test("it should return elements that contain specific clases", () => {
+
+        document.body.innerHTML =  `${mockedList}`;
+        const id = "2a";
+        const selector = 'li';
+        resetFlippedCard(id,selector);    
+        const filmA = document.getElementById('2a');
+        const filmB = document.getElementById('2b');
+
+        expect(filmA.querySelector('.film__description').classList.contains('hidden')).toBeFalsy;
+        expect(filmB.querySelector('.film__description').classList.contains('hidden')).toBetruthy;
+    });
+});

@@ -28,14 +28,6 @@ function addClickListener(selector, func) {
     }
 }
 
-// function printErrorMsg(text = '', container) {
-//     if (container) {
-//         const newElement = document.createElement('p');
-//         newElement.classList = 'info__no-result';
-//         newElement.innerText = text;
-//         container.appendChild(newElement);
-//     }
-// }
 
 function printErrorMsg(text = '', container) {
     if (container) {
