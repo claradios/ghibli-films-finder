@@ -14,7 +14,7 @@ function pickCard(film) {
     const description = film.querySelector('.film__description');
     const info = film.querySelector('.film__info');
     const title = film.querySelector('.film__title');
-    const btn = film.querySelector('button');
+    const btn = film.querySelector('.film__button');
     return {description,info,title,btn};
 }
 
@@ -69,4 +69,4 @@ function fixSearchSection(section) {
 
 
 
-export { filterTitle, flipCard, showDescription, resetFlippedCard, cleanContainers, fixSearchSection };
+export { pickCard, filterTitle, flipCard, showDescription, resetFlippedCard, cleanContainers, fixSearchSection };

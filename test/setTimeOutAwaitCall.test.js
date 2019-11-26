@@ -9,9 +9,7 @@ describe('setTimeOut launchs loader when open the page for the first time', () =
         waitForCalling(callFilms);
         expect(setTimeout).toHaveBeenCalledTimes(1);
         expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000);
-        
 
     });
-
 });
 
