@@ -2,9 +2,9 @@
 
 import { callApi } from './service.js';
 import { createNodeFilm, addClickListener, printErrorMsg } from './print.js';
-import { filterTitle, showDescription, cleanContainers, fixSearchSection} from './interaction.js';
+import { filterTitle, showDescription, cleanContainers, fixSearchSection } from './interaction.js';
 import { loader } from './loader.js';
-import {waitForCalling} from './setTimeOut.js'
+import { waitForCalling } from './setTimeOut.js'
 
 // html tags
 const filter = document.querySelector('.search__field');
@@ -24,21 +24,25 @@ let filmArr = [];
 let searchText = '';
 
 
-function showFilmAnswer(result) {
-  if (result !== '') {
+function showFilmAnswer(result,list,container) {
+  if (result !== '' && list) {
     list.innerHTML = result;
   } else {
-    printErrorMsg(errorMsg, infoContainer);
-    noMatchSound.play();
+    if (container) {
+      printErrorMsg(errorMsg, container);
+      if (noMatchSound) {
+        noMatchSound.play();
+      }
+    }
   }
 }
 
-function mapCards(array) {
+function mapCards(array = []) {
   let acc = '';
   array.map(film => {
-      const filmCard = createNodeFilm(film);
-      acc += filmCard;
-    });
+    const filmCard = createNodeFilm(film);
+    acc += filmCard;
+  });
 
   return acc;
 }
@@ -46,11 +50,12 @@ function mapCards(array) {
 function createCard(array = []) {
   const cardSelector = '.film__item';
   const btnSelector = '.film__button';
-  const filterResult = filterTitle(array,searchText);
+  debugger
+  const filterResult = filterTitle(array, searchText);
   const mapResult = mapCards(filterResult);
 
   cleanContainers(infoContainer, list);
-  showFilmAnswer(mapResult);
+  showFilmAnswer(mapResult, list, infoContainer);
   addClickListener(cardSelector, showDescription);
   addClickListener(btnSelector, showDescription);
 }
@@ -91,12 +96,17 @@ function searchFilm(event) {
 }
 
 
-loader(infoContainer);
+if (infoContainer) {
+  loader(infoContainer);
+}
+
 waitForCalling(callFilms);
 
 window.onscroll = () => fixSearchSection(searchSection);
 
-filter.addEventListener('keyup', searchFilm);
+if (filter) {
+  filter.addEventListener('keyup', searchFilm);
+}
 
 
-export { callFilms, showFilmAnswer, createCard, mapCards};
+export { callFilms, showFilmAnswer, createCard, mapCards };

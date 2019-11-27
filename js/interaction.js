@@ -45,7 +45,9 @@ function showDescription(event) {
     const id = film.id;
     resetFlippedCard(id, '.film__item');
     flipCard(film, TOGGLE);
-    flipSound.play();
+    if (flipSound) {
+        flipSound.play();
+    }
 }
 
 function resetFlippedCard(id, selector) {
@@ -57,7 +59,7 @@ function resetFlippedCard(id, selector) {
 }
 
 function cleanContainers(...rest) {
-    rest.map(item => item.innerHTML = '');
+    rest.map(item => item ? item.innerHTML = '': null);
 }
 
 function fixSearchSection(section) {
