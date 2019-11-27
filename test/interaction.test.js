@@ -96,7 +96,22 @@ describe("Function that TOGGLE or REMOVE classes from card elements", () => {
 });
 
 describe("Function filters an iterable object of cards from dom and maps it to flip it", () => {
+    describe("Function filters an iterable object of cards from dom and maps it to flip it", () => {
 
+        test("it should return elements that contain specific clases", () => {
+    
+            document.body.innerHTML =  `${mockedList}`;
+            const id = "2a";
+            const selector = 'li';
+            resetFlippedCard(id,selector);    
+            const filmA = document.getElementById('2a');
+            const filmB = document.getElementById('2b');
+    
+            expect(filmA.querySelector('.film__description').classList.contains('hidden')).toBeFalsy;
+            expect(filmB.querySelector('.film__description').classList.contains('hidden')).toBetruthy;
+        });
+    });
+    
     test("it should return elements that contain specific clases", () => {
 
         document.body.innerHTML =  `${mockedList}`;

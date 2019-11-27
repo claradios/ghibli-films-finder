@@ -43,9 +43,7 @@ function mapCards(array) {
   return acc;
 }
 
-
-
-function createFilteredInfo(array) {
+function createCard(array = []) {
   const cardSelector = '.film__item';
   const btnSelector = '.film__button';
   const filterResult = filterTitle(array,searchText);
@@ -62,7 +60,7 @@ function callFilms() {
     .then(data => {
       filmArr = data;
       infoContainer.innerHTML = '';
-      return createFilteredInfo(filmArr);
+      return createCard(filmArr);
     })
     .catch(err => {
       console.log(err);
@@ -78,7 +76,7 @@ function callFilms() {
 //     filmArr = data;
 //     infoContainer.innerHTML = '';
 
-//     return createFilteredInfo(filmArr);
+//     return createCard(filmArr);
 
 //   } catch (err) {
 //     console.log(err);
@@ -89,7 +87,7 @@ function callFilms() {
 function searchFilm(event) {
   const inputValue = event.currentTarget.value;
   searchText = inputValue;
-  createFilteredInfo(filmArr);
+  createCard(filmArr);
 }
 
 
@@ -101,4 +99,4 @@ window.onscroll = () => fixSearchSection(searchSection);
 filter.addEventListener('keyup', searchFilm);
 
 
-export {filterTitle, callFilms};
+export { callFilms, showFilmAnswer, createCard, mapCards};
