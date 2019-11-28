@@ -63,6 +63,7 @@ function cleanContainers(...rest) {
 }
 
 function fixSearchSection(section) {
+    console.log(section);
     const sticky = section.offsetTop;
     if (window.pageYOffset > sticky) {
         section.classList.add("sticky");
@@ -70,7 +71,6 @@ function fixSearchSection(section) {
         section.classList.remove("sticky");
     }
 }
-
 
 
 export { pickCard, filterTitle, flipCard, showDescription, resetFlippedCard, cleanContainers, fixSearchSection };

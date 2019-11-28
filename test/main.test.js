@@ -1,108 +1,65 @@
-//import { callFilms, showFilmAnswer, createCard, mapCards } from '../js/main.js';
-import { showFilmAnswer, mapCards } from '../js/main.js';
 import { apiFilms } from './fixtures/filmApiFixture.js';
-import { flipCard, filterTitle, cleanContainers, pickCard, resetFlippedCard } from '../js/interaction.js';
-import { createNodeFilm, printErrorMsg, addClickListener } from '../js/print.js';
+
+import * as print from '../js/print.js';
+import * as interaction from '../js/interaction.js';
+import * as main from '../js/main.js';
+import * as service from '../js/service.js';
 
 
-describe("Function that gets info from the array and convert it into html node", () => {
+describe('createCard is the core function that calls every other one', () => {
 
-    test("it should return an string html like", () => {
+  test('calls function createCard calls all the necessary functions to pain Card', () => {
+    const showFilmAnswerSpy = jest.spyOn(print, 'showFilmAnswer');
+    const addClickListenerSpy = jest.spyOn(print, 'addClickListener');
+    const mapCardsSpy = jest.spyOn(print, 'mapCards');
+    const filterTitleSpy = jest.spyOn(interaction, 'filterTitle');
+    const cleanContainersSpy = jest.spyOn(interaction, 'cleanContainers');
+
+    main.createCard();
+
+    expect(cleanContainersSpy).toHaveBeenCalledTimes(1);
+    expect(addClickListenerSpy).toHaveBeenCalledTimes(2);
+    expect(showFilmAnswerSpy).toHaveBeenCalledTimes(1);
+    expect(mapCardsSpy).toHaveBeenCalledTimes(1);
+    expect(filterTitleSpy).toHaveBeenCalledTimes(1);
+
+  });
+
+})
 
 
-        const fakeArray = [
-            {
-                "id": "2baf70d1-42bb-4437-b551-e5fed5a87abe",
-                "title": "Castle in the Sky",
-                "description": "The orphan Sheeta inherited a mysterious crystal that links her to the mythical sky-kingdom of Laputa. With the help of resourceful Pazu and a rollicking band of sky pirates, she makes her way to the ruins of the once-great civilization. Sheeta and Pazu must outwit the evil Muska, who plans to use Laputa's science to make himself ruler of the world.",
-                "director": "Hayao Miyazaki",
-                "producer": "Isao Takahata",
-                "release_date": "1986",
-                "rt_score": "95",
-            }
-        ]
+describe('searchFilm listen event and acts when typing ', () => {
 
-        mapCards(fakeArray);
+  const createCardSpy = jest.spyOn(main, 'createCard');
 
-        expect(mapCards).toBeTruthy();
-        expect(mapCards(fakeArray)).toMatch(/Castle in the Sky/);
-        expect(mapCards(fakeArray)).toMatch(/orphan Sheeta inherited a mysterious/);
-        expect(mapCards(fakeArray)).toMatch(/Hayao Miyazaki/);
-        expect(mapCards(fakeArray)).toMatch(/95/);
-    });
+  test('searchFilm calls createCard', () => {
+    let searchText = '';
+
+    const event = {
+      currentTarget: {
+        value: 'Castle'
+      }
+    }
+    main.searchFilm(event);
+
+    expect(createCardSpy).toHaveBeenCalledTimes(1);
+    expect(main.searchFilm(event)).toMatch('Castle');
+  });
+
 });
 
-describe("Function that introudces all the final result into html if any or includes error msg if empty", () => {
+describe('callFilms calls callApi and acts according to response with then and catch ', () => {
 
-    test("it should be a list with content after execution", () => {
+  const callApiSpy = jest.spyOn(service, 'callApi');
+  
+  test('call Api', () => { 
 
-        document.body.innerHTML = `<div class="display__additional-info"></div>
-                                            <ul class="display__list">`;
+    main.callFilms();
 
-        const container = document.querySelector('.display__additional-info');
-        const list = document.querySelector('.display__list');
-        const result = '<li>contenido de la lista</li>';
-
-        showFilmAnswer(result, list, container);
-
-        expect(showFilmAnswer).toBeTruthy();
-        expect(container.innerHTML.length).toBe(0);
-        expect(list.innerHTML).toEqual(result);
-
-    });
-
-    test("it should call printError if result === '' ", () => {
-
-        document.body.innerHTML = `<div class="display__additional-info"></div>
-                                            <ul class="display__list">`;
-
-        const container = document.querySelector('.display__additional-info');
-        const list = document.querySelector('.display__list');
-        const result = '';
-        const errorMsg = '<p class="info__no-result">Your search has no match. Please try again</p>';
-
-        showFilmAnswer(result, list, container);
-
-        expect(showFilmAnswer).toBeTruthy();
-        expect(list.innerHTML.length).toBe(0);
-        expect(container.innerHTML).toEqual(errorMsg);
-
-    });
+    expect(callApiSpy).toHaveBeenCalledTimes(1); 
+  });
 });
 
 
-// describe("Function calls all functions necessary to paint the cards", () => {
 
-// // function blablabla (array = []) {
-// //     const cardSelector = '.film__item';
-// //     const btnSelector = '.film__button';
-// //     const filterResult = filterTitle(array,searchText);
-// //     const mapResult = mapCards(filterResult);
-
-// //     cleanContainers(infoContainer, list);
-// //     showFilmAnswer(mapResult);
-// //     addClickListener(cardSelector, showDescription);
-// //     addClickListener(btnSelector, showDescription);
-// //   }
-//     test("function calls works", () => {
-//         document.body.innerHTML = `<div class="display__additional-info"></div>
-//                                    <ul class="display__list">`;
-
-//         const infoContainer = document.querySelector('.display__additional-info');
-//         const list = document.querySelector('.display__list');
-//         const searchTest = '';
-
-//         const mapResult = jest.fn();
-
-//         // > true
-//         createCard(apiFilms);
-//         expect(createCard).toBeTruthy();
-//         expect(mapResult).toHaveBeenCalled();
-
-//        // expect(myMockFn).toHaveBeenCalled();
-//         //expect(myMockFn((err, val) => console.log(val))).toBe(true);
-//         ;
-
-//     });
-// });
 

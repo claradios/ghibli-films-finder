@@ -1,5 +1,10 @@
 'use strict';
 
+// messages
+const errorMsg = 'Your search has no match. Please try again';
+// sounds
+const noMatchSound = new Audio('sounds/nomatch.mp3');
+
 function createNodeFilm(film) {
     const { id, title, description, director, rt_score } = film;
     const item =
@@ -28,13 +33,37 @@ function addClickListener(selector, func) {
     }
 }
 
-
 function printErrorMsg(text = '', container) {
     if (container) {
         container.innerHTML = `<p class="info__no-result">${text}</p>`
     }
 }
 
+function showFilmAnswer(result,list,container) {
+    if (result !== '' && list) {
+      list.innerHTML = result;
+    } else {
+      if (container) {
+        printErrorMsg(errorMsg, container);
+        if (noMatchSound) {
+          noMatchSound.play();
+        }
+      }
+    }
+  }
+  
+  function mapCards(array = []) {
+    let acc = '';
+    array.map(film => {
+      const filmCard = createNodeFilm(film);
+      acc += filmCard;
+    });
+  
+    return acc;
+  }
+  
 
 
-export { createNodeFilm, printErrorMsg, addClickListener };
+
+
+export { showFilmAnswer, mapCards, createNodeFilm, printErrorMsg, addClickListener };
