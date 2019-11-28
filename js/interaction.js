@@ -63,7 +63,7 @@ function cleanContainers(...rest) {
 }
 
 function fixSearchSection(section) {
-    console.log(section);
+    
     const sticky = section.offsetTop;
     if (window.pageYOffset > sticky) {
         section.classList.add("sticky");
