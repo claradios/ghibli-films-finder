@@ -44,7 +44,7 @@ describe('method that add listeners to every button existing on DOM', () => {
         BtnA.click();
         BtnB.click();    
         BtnC.click();
-        
+
         expect(func).toHaveBeenCalled();
         expect(func).toHaveBeenCalledTimes(3);
     });
@@ -67,13 +67,13 @@ describe("Function that gets info from the array and convert it into html node",
             }
         ]
 
-        mapCards(fakeArray);
+        const result = mapCards(fakeArray);
 
         expect(mapCards).toBeTruthy();
-        expect(mapCards(fakeArray)).toMatch(/Castle in the Sky/);
-        expect(mapCards(fakeArray)).toMatch(/orphan Sheeta inherited a mysterious/);
-        expect(mapCards(fakeArray)).toMatch(/Hayao Miyazaki/);
-        expect(mapCards(fakeArray)).toMatch(/95/);
+        expect(result).toMatch(/Castle in the Sky/);
+        expect(result).toMatch(/orphan Sheeta inherited a mysterious/);
+        expect(result).toMatch(/Hayao Miyazaki/);
+        expect(result).toMatch(/95/);
     });
 
     test("it should return an string html like that contains html labels", () => {
