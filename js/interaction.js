@@ -24,19 +24,21 @@ function flipCard(film, order) {
     if (film) {
         const newFilm = pickCard(film);
         const { description, info, btn, title } = newFilm;
-
-        if (order === TOGGLE) {
-            description.classList.toggle('hidden');
-            info.classList.toggle('hidden');
-            btn.classList.toggle('rotate');
-            film.classList.toggle('highlight');
-            title.classList.toggle('highlight-title');
-        } else if (order === REMOVE) {
-            description.classList.add('hidden');
-            info.classList.remove('hidden');
-            btn.classList.remove('rotate');
-            film.classList.remove('highlight');
-            title.classList.remove('highlight-title');
+        switch (order) {
+            case 'toggle':
+                description.classList.toggle('hidden');
+                info.classList.toggle('hidden');
+                btn.classList.toggle('rotate');
+                film.classList.toggle('highlight');
+                title.classList.toggle('highlight-title');
+                break;
+            case 'remove':
+                description.classList.add('hidden');
+                info.classList.remove('hidden');
+                btn.classList.remove('rotate');
+                film.classList.remove('highlight');
+                title.classList.remove('highlight-title');
+                break;
         }
     }
 }
