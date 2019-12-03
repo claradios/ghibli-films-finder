@@ -17,26 +17,27 @@ function pickCard(film) {
         const title = film.querySelector('.film__title');
         const btn = film.querySelector('.film__button');
         return { description, info, title, btn };
-    }    
+    }
 }
 
 function flipCard(film, order) {
+    if (film) {
+        const newFilm = pickCard(film);
+        const { description, info, btn, title } = newFilm;
 
-    const newFilm = pickCard(film);
-    const { description, info, btn, title } = newFilm;
-
-    if (order === TOGGLE) {
-        description.classList.toggle('hidden');
-        info.classList.toggle('hidden');
-        btn.classList.toggle('rotate');
-        film.classList.toggle('highlight');
-        title.classList.toggle('highlight-title');
-    } else if (order === REMOVE) {
-        description.classList.add('hidden');
-        info.classList.remove('hidden');
-        btn.classList.remove('rotate');
-        film.classList.remove('highlight');
-        title.classList.remove('highlight-title');
+        if (order === TOGGLE) {
+            description.classList.toggle('hidden');
+            info.classList.toggle('hidden');
+            btn.classList.toggle('rotate');
+            film.classList.toggle('highlight');
+            title.classList.toggle('highlight-title');
+        } else if (order === REMOVE) {
+            description.classList.add('hidden');
+            info.classList.remove('hidden');
+            btn.classList.remove('rotate');
+            film.classList.remove('highlight');
+            title.classList.remove('highlight-title');
+        }
     }
 }
 
@@ -59,11 +60,11 @@ function resetFlippedCard(id, selector) {
 }
 
 function cleanContainers(...rest) {
-    rest.map(item => item ? item.innerHTML = '': null);
+    rest.map(item => item ? item.innerHTML = '' : null);
 }
 
 function fixSearchSection(section) {
-    
+
     const sticky = section.offsetTop;
     if (window.pageYOffset > sticky) {
         section.classList.add("sticky");

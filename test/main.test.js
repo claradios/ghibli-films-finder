@@ -1,5 +1,3 @@
-import { apiFilms } from './fixtures/filmApiFixture.js';
-
 import * as print from '../js/print.js';
 import * as interaction from '../js/interaction.js';
 import * as main from '../js/main.js';

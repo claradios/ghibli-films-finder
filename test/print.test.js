@@ -38,10 +38,15 @@ describe('method that add listeners to every button existing on DOM', () => {
         const func = jest.fn();
         addClickListener(selector, func);
 
-        const oneBtn = document.querySelector('.btn-b');
-        oneBtn.click();
+        const BtnA = document.querySelector('.btn-a');
+        const BtnB = document.querySelector('.btn-b');
+        const BtnC = document.querySelector('.btn-c');
+        BtnA.click();
+        BtnB.click();    
+        BtnC.click();
         
         expect(func).toHaveBeenCalled();
+        expect(func).toHaveBeenCalledTimes(3);
     });
 })
 
@@ -86,16 +91,17 @@ describe("Function that gets info from the array and convert it into html node",
             }
         ]
 
-        mapCards(fakeArray);
+        const result = mapCards(fakeArray);
 
         expect(mapCards).toBeTruthy();
-        expect(mapCards(fakeArray)).toMatch(/li/);
-        expect(mapCards(fakeArray)).toMatch(/h2/);
-        expect(mapCards(fakeArray)).toMatch(/div/);
-        expect(mapCards(fakeArray)).toMatch(/p/);
-        expect(mapCards(fakeArray)).toMatch(/span/);
+        expect(result).toMatch(/li/);
+        expect(result).toMatch(/h2/);
+        expect(result).toMatch(/div/);
+        expect(result).toMatch(/p/);
+        expect(result).toMatch(/span/);        
     });
 });
+
 
 describe("Function that introudces all the final result into html if any or includes error msg if empty", () => {
 

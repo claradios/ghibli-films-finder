@@ -23,6 +23,25 @@ Ahora añadimos babel para que entiendad ECMASCRIPT 6
 
 `npm install --dev babel-jest @babel/core @babel/preset-env`
 
+y añadimos un archivo de configuración de babel:
+```js
+{
+  "presets": [
+    [
+  "@babel/preset-env",
+      {
+  "targets": {
+  "node": "current"
+        }
+      }
+    ]
+  ]
+}
+```
+
+en un archivo llamado `.babelrc`
+
+
 en el package.json añadimos la siguiuente línea:
 
 ```js

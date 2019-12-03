@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">76.19% </span>
+        <span class="strong">86.05% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>32/42</span>
+        <span class='fraction'>37/43</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">62.5% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>7/14</span>
+        <span class='fraction'>10/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">81.82% </span>
+        <span class="strong">90.91% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>9/11</span>
+        <span class='fraction'>10/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">85.37% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>30/40</span>
+        <span class='fraction'>35/41</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -121,7 +121,9 @@
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -144,22 +146,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,11 +189,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -215,26 +219,27 @@ function pickCard(film) {
         const title = film.querySelector('.film__title');
         const btn = film.querySelector('.film__button');
         return { description, info, title, btn };
-    }    
+    }
 }
 &nbsp;
 function flipCard(film, order) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (film) {
+        const newFilm = pickCard(film);
+        const { description, info, btn, title } = newFilm;
 &nbsp;
-    const newFilm = pickCard(film);
-    const { description, info, btn, title } = newFilm;
-&nbsp;
-    if (order === TOGGLE) {
-        description.classList.toggle('hidden');
-        info.classList.toggle('hidden');
-        btn.classList.toggle('rotate');
-        film.classList.toggle('highlight');
-        title.classList.toggle('highlight-title');
-    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (order === REMOVE) {
-        description.classList.add('hidden');
-        info.classList.remove('hidden');
-        btn.classList.remove('rotate');
-        film.classList.remove('highlight');
-        title.classList.remove('highlight-title');
+        if (order === TOGGLE) {
+            description.classList.toggle('hidden');
+            info.classList.toggle('hidden');
+            btn.classList.toggle('rotate');
+            film.classList.toggle('highlight');
+            title.classList.toggle('highlight-title');
+        } else <span class="missing-if-branch" title="else path not taken" >E</span>if (order === REMOVE) {
+            description.classList.add('hidden');
+            info.classList.remove('hidden');
+            btn.classList.remove('rotate');
+            film.classList.remove('highlight');
+            title.classList.remove('highlight-title');
+        }
     }
 }
 &nbsp;
@@ -257,15 +262,16 @@ function resetFlippedCard(id, selector) {
 }
 &nbsp;
 function cleanContainers(...rest) {
-    rest.map(item =&gt; item ? item.innerHTML = '': null);
+    rest.map(item =&gt; item ? item.innerHTML = '' : null);
 }
 &nbsp;
-function <span class="fstat-no" title="function not covered" >fixSearchSection(</span>section) {
-    const sticky = <span class="cstat-no" title="statement not covered" >section.offsetTop;</span>
-<span class="cstat-no" title="statement not covered" >    if (window.pageYOffset &gt; sticky) {</span>
-<span class="cstat-no" title="statement not covered" >        section.classList.add("sticky");</span>
+function fixSearchSection(section) {
+&nbsp;
+    const sticky = section.offsetTop;
+    if (window.pageYOffset &gt; sticky) {
+        section.classList.add("sticky");
     } else {
-<span class="cstat-no" title="statement not covered" >        section.classList.remove("sticky");</span>
+        section.classList.remove("sticky");
     }
 }
 &nbsp;
@@ -277,7 +283,7 @@ export { pickCard, filterTitle, flipCard, showDescription, resetFlippedCard, cle
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Nov 28 2019 16:32:14 GMT+0100 (GMT+01:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Dec 03 2019 15:27:18 GMT+0100 (GMT+01:00)
 </div>
 </div>
 <script src="../prettify.js"></script>

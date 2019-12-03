@@ -1,6 +1,6 @@
 import { apiFilms } from './fixtures/filmApiFixture.js';
 import { mockedFilm, mockedList } from './fixtures/filmElementsFixture.js';
-import { fixSearchSection, flipCard, filterTitle, cleanContainers, pickCard, resetFlippedCard } from '../js/interaction.js';
+import { fixSearchSection, flipCard, filterTitle, cleanContainers, pickCard, resetFlippedCard, showDescription } from '../js/interaction.js';
 
 
 describe("Filter function", () => {
@@ -23,7 +23,7 @@ describe("Filter function", () => {
     });
 });
 
-describe("Function that reset any containers interior to empty", () => {
+describe("cleanContainers method resets any containers interior to empty", () => {
 
     test("it should empty a container that is .lenght > 0", () => {
 
@@ -46,6 +46,7 @@ describe("Function that takes elements from dom element and return and object", 
         document.body.innerHTML = `${mockedFilm}`;
         const film = document.querySelector('li');
         const result = pickCard(film);
+
         expect(result.description.classList.contains('film__description')).toBe(true);
         expect(result.info.classList.contains('film__info')).toBe(true);
         expect(result.btn.classList.contains('film__button')).toBe(true);
@@ -128,15 +129,9 @@ describe("Function filters an iterable object of cards from dom and maps it to f
 
 
 
-describe('myComponent', () => {
+describe('searchSection method', () => { 
 
-    // beforeEach(() => {   
-
-    //     Object.defineProperty(window, 'pageYOffset', { value: 14 });
-       
-    // });
-
-    test('calls window.scrollTo', () => {
+    test('adds sticky css class when window.pageYOffset > 0', () => {
         Object.defineProperty(window, 'pageYOffset', { value: 14 });
 
         const section = document.createElement('section');
@@ -148,7 +143,7 @@ describe('myComponent', () => {
         expect(section.classList).toContain('sticky');      
     });
     
-    test('calls window.scrollTo', () => {
+    test('removes sticky css class when window.pageYOffset < 0', () => {
         Object.defineProperty(window, 'pageYOffset', { value: 0 });
 
         const section = document.createElement('section');
